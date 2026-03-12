@@ -11,7 +11,7 @@ const app = express();
 const mongoose = require('mongoose');
 
 const path = require('path');
-const loginRouter = require('./Controllers/login');
+const loginRouter = require('./controllers/login');
 
 //funcion autoinvocada para conectar a la base de datos y levantar el servidor
 // ()()
@@ -36,8 +36,12 @@ module.exports = app;
 
     //RUTAS FRONTEND
     app.use('/', express.static(path.resolve('views', "home"))); //ruta del home
+    app.use('/singup', express.static(path.resolve('views','singup')))
+    app.use('/login', express.static(path.resolve('views', 'login'))); //ruta del login
+    app.use('/components', express.static(path.resolve('views', 'components')));
+    app.use('/img', express.static(path.resolve('img')));
 
     //RUTAS BACKEND
-    app.use('/api/login', loginRouter);
-    
+    app.use('/api/login', loginRouter);    
 
+    module.exports = app;
